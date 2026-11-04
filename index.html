@@ -16,6 +16,20 @@
 /* Ban: stessa area immagine dei pick */
 .slot .mon-mark,.ban .mon-mark{width:190px!important;max-width:100%!important;height:180px!important;flex:none!important;overflow:visible!important}
 .slot .mon-mark img,.ban .mon-mark img{width:100%!important;height:100%!important;object-fit:contain!important;transform:none!important;filter:none!important;opacity:1!important}
+
+@media(max-width:550px){
+  .wrap{padding:14px 10px 30px}
+  .score{grid-template-columns:minmax(0,1fr);overflow:visible;scroll-snap-type:none}
+  .team{width:100%;min-width:0;scroll-snap-align:none;padding:12px}
+  .slots{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+  .slot,.slot:not(.filled){min-height:210px}
+  .slot.filled{padding:8px}
+  .slot .mon-mark,.ban .mon-mark{width:clamp(110px,34vw,150px)!important;max-width:100%!important;height:clamp(110px,34vw,150px)!important}
+  .ban-slot,.ban{min-height:220px}
+  .bans{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .ban{padding:8px;gap:6px}
+  .ban-name{font-size:15px;overflow-wrap:anywhere}
+}
 </style>
 </head>
 <body><main class="wrap">
