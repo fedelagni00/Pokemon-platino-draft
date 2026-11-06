@@ -228,3 +228,8 @@ body.guest-red-side-setup #readyPanel:not([hidden]){border-color:#ffd36e!importa
 .slot.pick-preview>.slot-preview-name,.slot.pick-preview>.pick-pending-label{transform:translateY(-7px)}
 </style>
 </body></html>
+<style id="center-completion-title">
+#completeOverlay:not([hidden]){position:fixed;inset:0;align-items:center;justify-content:center}
+#completeOverlay:not([hidden]) .complete-overlay-title{width:max-content;max-width:100%;text-align:center;white-space:nowrap;overflow-wrap:normal;word-break:normal;hyphens:none}
+@media(max-width:600px){#completeOverlay:not([hidden]) .complete-overlay-title{font-size:clamp(19px,6.8vw,40px);letter-spacing:0}}
+</style>
