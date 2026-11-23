@@ -309,6 +309,42 @@ body.coin-toss-screen .player-name-badge,
 body.draft-setup-only .player-name-badge{margin:0!important}
 body.guest-waiting-coin .player-name-badge{width:min(100%,760px)}
 </style>
+<style id="symmetric-pick-ban-grids">
+/* Pick e ban condividono la stessa griglia e la stessa altezza */
+.score .slots,.score .bans{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-auto-rows:260px!important;
+  align-items:stretch!important;
+  gap:10px!important;
+}
+.score .slot,.score .slot:not(.filled),.score .ban,.score .ban-slot{
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  height:260px!important;
+  margin:0!important;
+}
+.score .slot,.score .ban{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important}
+.score .slot.filled{gap:4px!important;padding:10px!important}
+.score .ban{gap:8px!important;padding:10px!important}
+.score .slot .mon-mark,.score .ban .mon-mark{
+  flex:0 1 180px!important;
+  width:100%!important;
+  max-width:190px!important;
+  height:180px!important;
+}
+.score .slot .mon-mark img,.score .ban .mon-mark img{width:100%!important;height:100%!important;object-fit:contain!important}
+.score .slot.filled>span:last-child{max-width:100%;overflow-wrap:anywhere}
+.score .ban-name{max-width:100%;overflow-wrap:anywhere}
+@media(max-width:600px){
+  .score .slots,.score .bans{grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:160px!important;gap:6px!important}
+  .score .slot,.score .slot:not(.filled),.score .ban,.score .ban-slot{height:160px!important;min-height:160px!important;padding:5px!important}
+  .score .slot .mon-mark,.score .ban .mon-mark{flex:0 1 clamp(68px,22vw,96px)!important;width:clamp(68px,22vw,96px)!important;height:clamp(68px,22vw,96px)!important}
+  .score .slot.filled>span:last-child,.score .ban-name{font-size:clamp(10px,2.8vw,13px)!important;line-height:1.12!important}
+}
+</style>
 </html>
 <style id="center-completion-title">
 #completeOverlay:not([hidden]){position:fixed;inset:0;align-items:center;justify-content:center}
