@@ -200,7 +200,7 @@ body.connection-lobby .side .how{font-size:15px;line-height:1.7}
 body.coin-toss-screen{min-height:100svh;background:#0b1020!important}
 body.coin-toss-screen> *:not(.wrap):not(#draftTitleOverlay){display:none!important}
 body.coin-toss-screen .wrap{width:100%;max-width:none;min-height:100svh;margin:0;padding:20px;display:grid;place-items:center}
-body.coin-toss-screen .wrap>*:not(#readyPanel):not(#playerNamePanel){display:none!important}
+body.coin-toss-screen .wrap>*:not(header):not(#readyPanel):not(#playerNamePanel){display:none!important}
 body.coin-toss-screen #readyPanel:not([hidden]){position:relative;left:auto;top:auto;transform:none;width:min(92vw,780px);max-height:90svh;overflow:auto;margin:0;padding:clamp(28px,6vw,60px);border:3px solid #ffd36e!important;border-radius:24px!important;background:linear-gradient(145deg,#263653,#111a2b 78%)!important;box-shadow:0 0 48px #ffd36e44!important;text-align:center}
 body.coin-toss-screen #readyPanel #coinStatus{display:block!important;margin:0 auto 24px!important;color:#fff!important;font-size:clamp(26px,5vw,48px)!important;font-weight:1000!important;line-height:1.12!important;text-align:center;text-shadow:0 3px 18px #000,0 0 20px #77adff66}
 body.coin-toss-screen #readyPanel #coinStart{display:block!important;width:min(100%,620px);min-height:96px;margin:0 auto!important}
@@ -210,12 +210,12 @@ body.coin-toss-screen #readyPanel #sideChoice,body.coin-toss-screen #readyPanel 
 body.draft-setup-only{min-height:100svh;background:#0b1020!important}
 body.draft-setup-only> *:not(.wrap):not(#sideAssignedOverlay):not(#draftTitleOverlay){display:none!important}
 body.draft-setup-only .wrap{width:100%;max-width:none;min-height:100svh;margin:0;padding:20px;display:grid;place-items:center}
-body.draft-setup-only .wrap>*:not(#readyPanel):not(#playerNamePanel){display:none!important}
+body.draft-setup-only .wrap>*:not(header):not(#readyPanel):not(#playerNamePanel){display:none!important}
 body.draft-setup-only #readyPanel:not([hidden]){position:relative;left:auto;top:auto;transform:none;width:min(92vw,780px);max-height:90svh;overflow:auto;margin:0;padding:clamp(28px,6vw,60px);border:3px solid #ffd36e!important;border-radius:24px!important;background:linear-gradient(145deg,#263653,#111a2b 78%)!important;box-shadow:0 0 48px #ffd36e44!important;text-align:center}
 </style>
 <style id="guest-red-side-clean-panel">
 body.guest-red-side-setup> *:not(.wrap):not(#sideAssignedOverlay):not(#draftTitleOverlay){display:none!important}
-body.guest-red-side-setup .wrap>*:not(#readyPanel):not(#playerNamePanel){display:none!important}
+body.guest-red-side-setup .wrap>*:not(header):not(#readyPanel):not(#playerNamePanel){display:none!important}
 body.guest-red-side-setup #readyPanel:not([hidden]){border-color:#ffd36e!important;background:linear-gradient(145deg,#263653,#111a2b 78%)!important;box-shadow:0 0 48px #ffd36e44!important}
 </style>
 <style id="coin-result-yellow-theme">
@@ -264,7 +264,44 @@ body.pick-side-red #grid .poke:hover:not(:disabled){border-color:#ff9da4!importa
 #playerNameFeedback{min-height:0;margin:8px 0 0;color:#ffd36e;font-weight:700}
 @media(max-width:560px){.player-name-panel{padding:18px 14px}.player-name-row{flex-direction:column}.player-name-row input,.player-name-row button{width:100%;max-width:none}}
 </style>
-</body></html>
+</body><style id="clean-connected-player-setup">
+/* Layout coerente per l’inserimento del nome su entrambi i dispositivi */
+body.guest-waiting-coin .wrap,
+body.coin-toss-screen .wrap,
+body.draft-setup-only .wrap{
+  box-sizing:border-box!important;width:100%!important;max-width:980px!important;min-height:100svh!important;
+  margin:0 auto!important;padding:clamp(16px,4vw,40px)!important;
+  display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+  gap:clamp(14px,2.5vh,24px)!important
+}
+body.guest-waiting-coin .wrap>header,
+body.coin-toss-screen .wrap>header,
+body.draft-setup-only .wrap>header{display:block!important;width:100%!important;margin:0!important;text-align:center!important}
+body.guest-waiting-coin .wrap>header .sub,
+body.coin-toss-screen .wrap>header .sub,
+body.draft-setup-only .wrap>header .sub{max-width:680px;margin:6px auto 0!important;line-height:1.45}
+body.guest-waiting-coin #guestWaitBanner{width:min(100%,760px)!important;margin:0!important;padding:clamp(20px,5vw,42px)!important;border-width:2px!important;border-radius:22px!important}
+body.guest-waiting-coin #guestWaitBanner strong{font-size:clamp(25px,6vw,48px)!important;line-height:1.12!important;letter-spacing:0!important}
+#playerNamePanel:not([hidden]){box-sizing:border-box!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:8px!important;width:min(100%,760px)!important;margin:0!important;padding:clamp(18px,3.5vw,30px)!important;border:2px solid #ffd36e!important;border-radius:22px!important;background:linear-gradient(145deg,#263653,#111a2b 78%)!important;box-shadow:0 10px 34px #0006,0 0 28px #ffd36e22!important;text-align:center!important}
+#playerNamePanel h2{font-size:clamp(24px,4vw,34px)!important;line-height:1.15!important;margin:0!important}
+#playerNamePanel>p{font-size:clamp(14px,2vw,17px)!important;line-height:1.4!important;margin:0!important}
+#playerNamePanel .player-name-row{width:100%;max-width:560px;margin:6px auto 0;align-items:stretch}
+#playerNamePanel .player-name-row input{box-sizing:border-box;min-width:0;flex:1;width:auto;min-height:58px}
+#playerNamePanel .player-name-row button{flex:0 0 160px;min-height:58px;white-space:nowrap}
+#playerNamePanel #playerNameFeedback:empty{display:none!important}
+body.coin-toss-screen #readyPanel:not([hidden]),
+body.draft-setup-only #readyPanel:not([hidden]){box-sizing:border-box!important;width:min(100%,760px)!important;max-height:none!important;margin:0!important;padding:clamp(20px,4vw,36px)!important}
+body.guest-red-side-setup #readyPanel:not([hidden]){width:min(100%,760px)!important;margin:0!important}
+.team h2 span:first-child{min-width:0;overflow-wrap:anywhere}
+@media(max-width:600px){
+  body.guest-waiting-coin .wrap,body.coin-toss-screen .wrap,body.draft-setup-only .wrap{min-height:100svh!important;padding:16px 12px!important;gap:14px!important}
+  #playerNamePanel:not([hidden]){padding:18px 14px!important;border-radius:18px!important}
+  #playerNamePanel .player-name-row{flex-direction:column}
+  #playerNamePanel .player-name-row input,#playerNamePanel .player-name-row button{width:100%;flex:none;max-width:none}
+  body.coin-toss-screen #readyPanel #coinStart{min-height:78px!important;font-size:clamp(28px,8vw,42px)!important}
+}
+</style>
+</html>
 <style id="center-completion-title">
 #completeOverlay:not([hidden]){position:fixed;inset:0;align-items:center;justify-content:center}
 #completeOverlay:not([hidden]) .complete-overlay-title{width:max-content;max-width:100%;text-align:center;white-space:nowrap;overflow-wrap:normal;word-break:normal;hyphens:none}
