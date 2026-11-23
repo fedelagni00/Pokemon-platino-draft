@@ -345,6 +345,23 @@ body.guest-waiting-coin .player-name-badge{width:min(100%,760px)}
   .score .slot.filled>span:last-child,.score .ban-name{font-size:clamp(10px,2.8vw,13px)!important;line-height:1.12!important}
 }
 </style>
+<style id="clear-blue-red-side-panels">
+.score>.team[data-side="blue"]{
+  border:3px solid #64a9ff!important;
+  background:linear-gradient(145deg,#18375c 0%,#13243b 52%,#101a2b 100%)!important;
+  box-shadow:0 0 0 2px #64a9ff22,0 10px 34px #64a9ff24,inset 0 0 32px #64a9ff0d!important
+}
+.score>.team[data-side="red"]{
+  border:3px solid #ff727c!important;
+  background:linear-gradient(145deg,#542832 0%,#321e2a 52%,#171725 100%)!important;
+  box-shadow:0 0 0 2px #ff727c22,0 10px 34px #ff727c24,inset 0 0 32px #ff727c0d!important
+}
+.score>.team[data-side="blue"]>h2{color:#8bc1ff!important}
+.score>.team[data-side="red"]>h2{color:#ff9da4!important}
+.score>.team[data-side="blue"]>h3{color:#8bc1ff!important}
+.score>.team[data-side="red"]>h3{color:#ff9da4!important}
+@media(max-width:600px){.score>.team[data-side]{border-width:2px!important}}
+</style>
 </html>
 <style id="center-completion-title">
 #completeOverlay:not([hidden]){position:fixed;inset:0;align-items:center;justify-content:center}
