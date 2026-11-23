@@ -147,7 +147,7 @@ body.guest-waiting-coin #sideAssignedOverlay,body.guest-waiting-coin #abortOverl
 </section>
 <div class="workspace"><section class="picker"><div class="pickhead"><input id="search" type="search" placeholder="Cerca un Pokémon…" aria-label="Cerca un Pokémon"><span class="count" id="count">—</span></div><div class="grid" id="grid"></div></section>
 <aside class="side"><div class="controls"><button class="action" id="undo">↶ Annulla</button><button class="action" id="reset">↻ Ricomincia</button></div><div class="next" id="next"></div><h3>Come si gioca</h3><p>Tutti i Pokémon del roster sono mostrati con la loro immagine. Seleziona una specie per bannarla o aggiungerla alla squadra; usa la ricerca per nome o numero. Una specie può comparire una sola volta nella draft.</p><div class="how"><ol><li>Prima fase di ban: 3 ban per squadra, alternati Blu e Rosso.</li><li>Prima fase di pick: Rosso 1 → Blu 2 → Rosso 1 → Blu 1 (5 pick in totale).</li><li>Seconda fase di ban: 3 ban per squadra, alternati Rosso e Blu.</li><li>Pick finali: 7 turni alternati, partendo dal Rosso, fino a 6 Pokémon per squadra.</li></ol></div></aside></div><p class="foot">Roster: Pokédex regionale esteso di Pokémon Platino (210 specie). Le forme alternative non sono incluse; alcune specie possono richiedere scambi.</p><section class="music-section" aria-label="Musica di sottofondo" style="width:auto!important;height:auto!important;max-width:max-content!important;max-height:none!important;margin:18px auto 0!important;padding:3px 8px!important;border:0!important;overflow:visible!important;opacity:1!important"><button id="musicToggle" type="button" class="music-toggle" disabled aria-pressed="false" style="border:0;background:transparent;color:#8592ad;padding:4px 8px;font:12px system-ui,sans-serif;cursor:pointer">⏸ Pausa musica</button><div class="music-player" id="musicPlayer" style="width:1px!important;height:1px!important;overflow:hidden!important"></div></section>
-</main><div id="draftTitleOverlay" hidden aria-live="polite"><div class="draft-title-card"><span class="draft-title-kicker">LA SFIDA HA INIZIO</span><strong>Draft Pokémon</strong><span class="draft-title-divider"></span><b>PLATINUM</b></div></div><div id="abortOverlay" hidden><div class="abort-overlay-card"><div class="abort-overlay-title">DRAFT<br>ABORTITA</div><p>Il tempo per il pick è scaduto.</p></div></div><div id="completeOverlay" hidden><div class="complete-overlay-card"><div class="complete-overlay-title">DRAFT<br>COMPLETATA</div><p>Selezione terminata!</p></div></div>
+</main><div id="draftTitleOverlay" hidden aria-live="polite"><div class="draft-title-card"><span class="draft-title-kicker">LA SFIDA HA INIZIO</span><strong>DRAFT<br>POKÉMON</strong><span class="draft-title-divider"></span><b>PLATINUM</b></div></div><div id="abortOverlay" hidden><div class="abort-overlay-card"><div class="abort-overlay-title">DRAFT<br>ABORTITA</div><p>Il tempo per il pick è scaduto.</p></div></div><div id="completeOverlay" hidden><div class="complete-overlay-card"><div class="complete-overlay-title">DRAFT<br>COMPLETATA</div><p>Selezione terminata!</p></div></div>
 <script src="https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"></script><script>
 const musicTracks=['r3oWTpyM_-8','_lCaK54JkR4','5bKN-d8ihxs','gbuK40nSSlE','hv8g5u55QFA','rXefFHRgyE0','qtzPna9yFjg','ciV2xFKBvPg','TCa-zAtDCoc','X13L63W8fUQ'];const chooseMusicTrack=()=>musicTracks[Math.floor(Math.random()*musicTracks.length)];let pokemon=[], state={phase:'ban1',index:0,bans:{A:[],B:[]},picks:{A:[],B:[]},previewPick:null,timerEnabled:false,deadline:null,ready:{A:false,B:false},started:true,musicStarted:false,musicPosition:0,musicVideoId:null,sides:{A:null,B:null},playerNames:{A:'',B:''},coinTosser:null,coinResult:null}, history=[];let completionShowTimer=null,completionHideTimer=null,completionNoticeScheduled=false,sideNoticeSide=null,sideNoticeTimer=null;let cryAudio=null,pendingPickId=null,draftTitleTimer=null;const playedCryIds=new Set();
 const missedBanImage='data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#f3f6ff" stroke="#0b1020" stroke-width="6"/><path d="M4 50a46 46 0 0 1 92 0H4Z" fill="#e84f62"/><path d="M4 50h92" stroke="#0b1020" stroke-width="8"/><circle cx="50" cy="50" r="14" fill="#f3f6ff" stroke="#0b1020" stroke-width="6"/><circle cx="50" cy="50" r="5" fill="#1d2942"/></svg>');const $=s=>document.querySelector(s),platinumSpriteIndex={};function spriteMarkup(id,card=false){const i=platinumSpriteIndex[id];if(i==null)return '';return `<canvas class="platinum-sprite" width="80" height="80" data-index="${i}" style="display:block;width:${card?'76px':'100%'};height:${card?'76px':'100%'};flex:none;image-rendering:pixelated"></canvas>`}function drawPlatinumSprites(){if(!platinumAtlasImage.complete||!platinumAtlasImage.naturalWidth)return;document.querySelectorAll('canvas.platinum-sprite').forEach(c=>{const i=Number(c.dataset.index);const ctx=c.getContext('2d');if(!ctx)return;ctx.imageSmoothingEnabled=false;ctx.clearRect(0,0,80,80);ctx.drawImage(platinumAtlasImage,(i%15)*80,Math.floor(i/15)*80,80,80,0,0,80,80)})}const platinumAtlasImage=new Image();platinumAtlasImage.onload=drawPlatinumSprites;platinumAtlasImage.src='assets/platinum-atlas.png';const nameIt=n=>({'mr-mime':'Mr. Mime','mime-jr':'Mime Jr.','porygon-z':'Porygon-Z','porygon2':'Porygon2','ho-oh':'Ho-Oh'}[n]||n.replaceAll('-',' ').replace(/\b\w/g,c=>c.toUpperCase()));
@@ -410,3 +410,36 @@ body.guest-waiting-coin .player-name-badge{width:min(100%,760px)}
 <style id="draft-title-match-mobile-colors">#draftTitleOverlay .draft-title-card .draft-title-kicker{color:#ffd36e!important;font:900 12px/1.45 system-ui,-apple-system,Segoe UI,sans-serif!important;letter-spacing:.32em!important}#draftTitleOverlay .draft-title-card>strong{color:#fff!important;font:1000 40px/1.02 system-ui,-apple-system,Segoe UI,sans-serif!important;letter-spacing:-.045em!important;text-shadow:0 5px 28px #57a4ff88!important}#draftTitleOverlay .draft-title-card>b{display:block!important;color:#ffd36e!important;font:1000 24px/1.2 system-ui,-apple-system,Segoe UI,sans-serif!important;letter-spacing:.3em!important;text-shadow:0 0 24px #ffd36e88!important}</style>
 
 <style id="intro-and-coin-no-overlap">#draftTitleOverlay:not([hidden]) .draft-title-card{width:min(94vw,420px)!important;max-width:420px!important;padding:34px 22px!important;border-radius:22px!important}body:has(#draftTitleOverlay:not([hidden])) #readyPanel #coinStatus,body:has(#draftTitleOverlay:not([hidden])) #guestWaitBanner{display:none!important}</style>
+
+<style id="final-title-and-ban-overrides">
+/* Ultime regole: prevalgono sui vecchi stili fissi del titolo */
+#draftTitleOverlay:not([hidden]){
+  position:fixed!important;inset:0!important;box-sizing:border-box!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  padding:12px!important;overflow:auto!important
+}
+#draftTitleOverlay:not([hidden]) .draft-title-card{
+  box-sizing:border-box!important;width:min(94vw,620px)!important;max-width:620px!important;min-width:0!important;
+  padding:clamp(22px,5vw,48px) clamp(16px,5vw,42px)!important;margin:auto!important
+}
+#draftTitleOverlay:not([hidden]) .draft-title-card>strong{
+  display:block!important;width:100%!important;max-width:100%!important;
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif!important;
+  font-size:clamp(25px,8vw,70px)!important;font-weight:1000!important;line-height:1.04!important;
+  letter-spacing:-.025em!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:normal!important
+}
+#draftTitleOverlay:not([hidden]) .draft-title-card>b{
+  display:block!important;width:100%!important;font-size:clamp(20px,5vw,38px)!important;
+  line-height:1.12!important;letter-spacing:clamp(.08em,1.5vw,.22em)!important;overflow-wrap:anywhere!important
+}
+#draftTitleOverlay:not([hidden]) .draft-title-card .draft-title-kicker{
+  font-size:clamp(10px,2.7vw,16px)!important;line-height:1.3!important;
+  letter-spacing:clamp(.08em,1.5vw,.25em)!important
+}
+/* Solo le squadre e i pick usano i colori dei side; i ban sono neutri */
+#aBans .ban,#bBans .ban,#aBans .ban-slot,#bBans .ban-slot{
+  border:2px solid #f3f6ff!important;background:#080b12!important;color:#f3f6ff!important
+}
+#aBans .ban-name,#bBans .ban-name{color:#f3f6ff!important}
+.score>.team>h3{color:#e8edf7!important}
+</style>
