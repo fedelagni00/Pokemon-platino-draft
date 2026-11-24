@@ -726,6 +726,12 @@ body.pick-side-red .slot.active-slot,body.pick-side-red .slot.active-slot.pick-p
 #aBans .ban-slot.active-slot .ban-pulse-overlay,
 #bBans .ban-slot.active-slot .ban-pulse-overlay{
   display:block!important;
+  position:absolute!important;
+  inset:2px!important;
+  z-index:999!important;
+  pointer-events:none!important;
+  border-radius:5px!important;
+  background:#fff!important;
   opacity:0;
   animation:ban-active-white-flash 1.2s steps(1,end) infinite!important;
 }
