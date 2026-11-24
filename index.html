@@ -820,12 +820,25 @@ body.pick-side-red .slot.active-slot,body.pick-side-red .slot.active-slot.pick-p
 }
 </style>
 <style id="single-continuous-slot-pulse">
-/* Una sola animazione per riquadro: evita battimenti tra vecchi effetti di bordo e overlay */
+/* Un solo velo pulsa: rimuove i vecchi lampi sul riquadro e sui contenuti */
 #aBans .ban-slot.active-slot,
 #bBans .ban-slot.active-slot,
 #aPicks .slot.active-slot,
 #bPicks .slot.active-slot{
-  animation:none!important;
+  animation:none!important
+}
+#aBans .ban-slot.active-slot::before,
+#bBans .ban-slot.active-slot::before,
+#aBans .ban-slot.active-slot::after,
+#bBans .ban-slot.active-slot::after{
+  display:none!important;
+  animation:none!important
+}
+#aPicks .slot.active-slot > :not(.pick-pulse-overlay),
+#bPicks .slot.active-slot > :not(.pick-pulse-overlay),
+#aBans .ban-slot.active-slot .ban-slot-label,
+#bBans .ban-slot.active-slot .ban-slot-label{
+  animation:none!important
 }
 #aBans .ban-slot.active-slot .ban-pulse-overlay,
 #bBans .ban-slot.active-slot .ban-pulse-overlay{
