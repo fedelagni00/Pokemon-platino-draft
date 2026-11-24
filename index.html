@@ -764,6 +764,61 @@ body.pick-side-red .slot.active-slot,body.pick-side-red .slot.active-slot.pick-p
   50%{opacity:.58}
 }
 </style>
+<style id="draft-title-polish">
+/* Titolo iniziale: centrato e leggibile su schermi grandi e piccoli */
+#draftTitleOverlay:not([hidden]){
+  position:fixed!important;inset:0!important;display:flex!important;
+  align-items:center!important;justify-content:center!important;
+  width:100%!important;min-height:100vh!important;min-height:100svh!important;
+  padding:clamp(16px,4vw,36px)!important;overflow:auto!important
+}
+#draftTitleOverlay:not([hidden]) .draft-title-card{
+  width:min(92vw,800px)!important;max-width:800px!important;min-width:0!important;
+  margin:auto!important;padding:clamp(34px,6vh,64px) clamp(20px,5vw,56px)!important;
+  border-radius:clamp(22px,3vw,32px)!important;text-align:center!important
+}
+#draftTitleOverlay:not([hidden]) .draft-title-kicker{
+  margin:0 auto clamp(16px,3vh,24px)!important;
+  font-size:clamp(13px,1.7vw,19px)!important;line-height:1.35!important;
+  letter-spacing:clamp(.12em,1vw,.22em)!important
+}
+#draftTitleOverlay:not([hidden]) .draft-title-card>strong{
+  width:100%!important;max-width:none!important;display:block!important;
+  margin:0 auto!important;font-size:clamp(58px,8.5vw,104px)!important;
+  line-height:.98!important;letter-spacing:-.045em!important;
+  white-space:normal!important;overflow-wrap:normal!important;word-break:normal!important
+}
+#draftTitleOverlay:not([hidden]) .draft-title-divider{
+  width:min(58vw,320px)!important;height:4px!important;
+  margin:clamp(20px,4vh,34px) auto!important
+}
+#draftTitleOverlay:not([hidden]) .draft-title-card>b{
+  display:block!important;width:100%!important;margin:0 auto!important;
+  font-size:clamp(27px,4vw,44px)!important;line-height:1.1!important;
+  letter-spacing:clamp(.14em,1.2vw,.24em)!important
+}
+@media(max-width:600px){
+  #draftTitleOverlay:not([hidden]){padding:16px!important}
+  #draftTitleOverlay:not([hidden]) .draft-title-card{
+    width:min(100%,500px)!important;padding:clamp(34px,8vh,52px) 20px!important;
+    border-radius:24px!important
+  }
+  #draftTitleOverlay:not([hidden]) .draft-title-kicker{
+    margin-bottom:18px!important;font-size:clamp(12px,3.5vw,15px)!important;
+    letter-spacing:.14em!important
+  }
+  #draftTitleOverlay:not([hidden]) .draft-title-card>strong{
+    font-size:clamp(42px,12.8vw,64px)!important;line-height:1!important;
+    letter-spacing:-.04em!important
+  }
+  #draftTitleOverlay:not([hidden]) .draft-title-divider{
+    width:min(68vw,260px)!important;margin:22px auto!important
+  }
+  #draftTitleOverlay:not([hidden]) .draft-title-card>b{
+    font-size:clamp(25px,7.5vw,34px)!important;letter-spacing:.16em!important
+  }
+}
+</style>
 </head>
 <body><main class="wrap">
 <header><h1>Draft Pokémon</h1><div class="top"><span class="pill">Pokémon Platino</span><span class="pill">Roster di Sinnoh prima della Lega</span><span class="pill">6 Pokémon per squadra · 6 ban per squadra</span><span class="pill">Ordine: 3 ban → 5 pick → 3 ban → 7 pick</span></div></header><div class="player-name-badge" id="playerNameBadge" hidden aria-live="polite"></div><section class="guest-wait-banner" id="guestWaitBanner" hidden role="status" aria-live="polite"><span>IN ATTESA DEL LANCIO</span><strong>IL GIOCATORE COLLEGATO<br>LANCERÀ LA MONETA</strong></section><section class="player-name-panel" id="playerNamePanel" hidden><h2>Nome giocatore</h2><p>Il nome apparirà nella draft accanto al tuo side.</p><div class="player-name-row"><input id="playerNameInput" type="text" maxlength="20" placeholder="Scrivi il tuo nome" autocomplete="nickname" aria-label="Il tuo nome"><button type="button" class="action primary" id="savePlayerName">CONFERMA</button></div><p id="playerNameFeedback" aria-live="polite"></p></section><section class="connection-panel"><h2>Gioca con due telefoni</h2><p>Apri questo stesso file su entrambi. Un telefono crea la stanza; il secondo inserisce il codice.</p><div class="connection-row"><button class="action primary" id="createRoom">Crea stanza</button><input id="roomInput" type="text" maxlength="6" placeholder="Codice stanza" aria-label="Codice stanza" autocomplete="off"><button class="action" id="joinRoom">Entra</button></div><div class="room-code" id="roomCodeBox" hidden>Codice da condividere<strong id="roomCode">------</strong><button class="action" id="copyRoom" style="margin-top:8px">Copia codice</button></div><div class="connection-status" id="connectionStatus"></div></section><section class="timer-settings"><label class="timer-option"><input id="timerToggle" type="checkbox"> Attiva il timer di 30 secondi per ogni turno</label><div class="timer-readout" id="turnTimer" hidden></div></section><div id="sideAssignedOverlay" hidden aria-live="assertive"><div class="side-assigned-card"><strong id="sideAssignedText"></strong></div></div><section class="ready-panel" id="readyPanel" hidden><p id="coinStatus">Sorteggio del lato</p><button class="ready-button" id="coinStart">TESTA O CROCE</button><div class="side-choice" id="sideChoice" hidden><button type="button" id="pickBlue" class="side-button blue-side">BLUE SIDE</button><button type="button" id="pickRed" class="side-button red-side">RED SIDE</button></div><p id="readyStatus" hidden></p><button class="ready-button" id="readyButton" hidden>PRONTO</button></section>
