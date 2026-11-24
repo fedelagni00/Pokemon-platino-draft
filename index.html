@@ -672,3 +672,23 @@ body.pick-side-red .slot.active-slot,body.pick-side-red .slot.active-slot.pick-p
   }
 }
 </style>
+
+
+<style id="active-ban-inner-only-pulse">
+/* Il bordo resta fermo: pulsa esclusivamente lo sfondo interno del ban attivo */
+#aBans .ban-slot.active-slot,
+#bBans .ban-slot.active-slot{
+  border:2px solid #fff!important;
+  animation:active-ban-inner-fill 1.35s ease-in-out infinite!important;
+}
+@keyframes active-ban-inner-fill{
+  0%,100%{
+    background-color:#080b12;
+    box-shadow:inset 0 0 0 0 rgba(255,255,255,0);
+  }
+  50%{
+    background-color:#303846;
+    box-shadow:inset 0 0 30px 5px rgba(255,255,255,.22);
+  }
+}
+</style>
