@@ -692,3 +692,38 @@ body.pick-side-red .slot.active-slot,body.pick-side-red .slot.active-slot.pick-p
   }
 }
 </style>
+
+
+<style id="ban-pulse-visible-overlay-fix">
+/* Soluzione robusta: il bordo resta immobile, pulsa un velo bianco DENTRO il riquadro */
+#aBans .ban-slot.active-slot,
+#bBans .ban-slot.active-slot{
+  position:relative!important;
+  overflow:hidden!important;
+  isolation:isolate!important;
+  border:2px solid #fff!important;
+  background:#080b12!important;
+}
+#aBans .ban-slot.active-slot::before,
+#bBans .ban-slot.active-slot::before{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:0!important;
+  pointer-events:none!important;
+  border-radius:inherit!important;
+  background:rgba(255,255,255,.38)!important;
+  opacity:0!important;
+  animation:ban-inner-white-overlay 1.2s ease-in-out infinite!important;
+}
+#aBans .ban-slot.active-slot .ban-slot-label,
+#bBans .ban-slot.active-slot .ban-slot-label{
+  position:relative!important;
+  z-index:1!important;
+  color:#fff!important;
+}
+@keyframes ban-inner-white-overlay{
+  0%,100%{opacity:0}
+  50%{opacity:1}
+}
+</style>
