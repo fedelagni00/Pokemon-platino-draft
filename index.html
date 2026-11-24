@@ -607,3 +607,44 @@ body.pick-side-red .slot.active-slot,body.pick-side-red .slot.active-slot.pick-p
   body.pick-side-red .slot.active-slot{border-color:rgba(255,114,124,.52)!important}
 }
 </style>
+
+<style id="visible-active-box-pulse-and-opaque-intro">
+/* Lampeggio del riquadro intero, sempre attivo anche con movimento ridotto */
+.slot.active-slot,.slot.active-slot.pick-preview{
+  border-style:solid!important;
+  animation:visible-side-box-pulse 1.55s ease-in-out infinite!important
+}
+.ban-slot.active-slot{
+  border:2px solid #fff!important;background:#080b12!important;color:#f3f6ff!important;
+  animation:visible-white-ban-pulse 1.55s ease-in-out infinite!important
+}
+body.pick-side-blue .slot.active-slot,body.pick-side-blue .slot.active-slot.pick-preview{
+  animation:visible-blue-pick-pulse 1.55s ease-in-out infinite!important
+}
+body.pick-side-red .slot.active-slot,body.pick-side-red .slot.active-slot.pick-preview{
+  animation:visible-red-pick-pulse 1.55s ease-in-out infinite!important
+}
+@keyframes visible-white-ban-pulse{
+  0%,100%{border-color:rgba(255,255,255,.36);background:#080b12;box-shadow:0 0 0 0 rgba(255,255,255,0)}
+  50%{border-color:rgba(255,255,255,.90);background:#141820;box-shadow:0 0 15px 2px rgba(255,255,255,.20)}
+}
+@keyframes visible-blue-pick-pulse{
+  0%,100%{border-color:rgba(100,169,255,.34);background:rgba(100,169,255,.035);box-shadow:0 0 0 0 rgba(100,169,255,0)}
+  50%{border-color:rgba(100,169,255,.82);background:rgba(100,169,255,.12);box-shadow:0 0 16px 2px rgba(100,169,255,.22)}
+}
+@keyframes visible-red-pick-pulse{
+  0%,100%{border-color:rgba(255,114,124,.34);background:rgba(255,114,124,.035);box-shadow:0 0 0 0 rgba(255,114,124,0)}
+  50%{border-color:rgba(255,114,124,.82);background:rgba(255,114,124,.12);box-shadow:0 0 16px 2px rgba(255,114,124,.22)}
+}
+@keyframes visible-side-box-pulse{
+  0%,100%{border-color:rgba(255,255,255,.25);box-shadow:0 0 0 0 rgba(255,255,255,0)}
+  50%{border-color:rgba(255,255,255,.55);box-shadow:0 0 9px 1px rgba(255,255,255,.10)}
+}
+/* La schermata d’introduzione copre completamente il contenuto sottostante */
+#draftTitleOverlay:not([hidden]){
+  position:fixed!important;inset:0!important;z-index:10000!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  box-sizing:border-box!important;width:100vw!important;height:100svh!important;min-height:100svh!important;
+  padding:12px!important;overflow:auto!important;background:#0b1020!important;backdrop-filter:none!important
+}
+</style>
