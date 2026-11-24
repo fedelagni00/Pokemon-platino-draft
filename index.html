@@ -830,25 +830,17 @@ body.pick-side-red .slot.active-slot,body.pick-side-red .slot.active-slot.pick-p
 #aBans .ban-slot.active-slot .ban-pulse-overlay,
 #bBans .ban-slot.active-slot .ban-pulse-overlay{
   opacity:.06;
-  animation:continuous-ban-pulse 2.4s ease-in-out infinite!important;
+  animation:continuous-ban-pulse 3.2s linear infinite!important;
   will-change:opacity
 }
 #aPicks .slot.active-slot .pick-pulse-overlay,
 #bPicks .slot.active-slot .pick-pulse-overlay{
   opacity:.06;
-  animation:continuous-pick-pulse 2.4s ease-in-out infinite!important;
+  animation:continuous-pick-pulse 3.2s linear infinite!important;
   will-change:opacity
 }
-@keyframes continuous-ban-pulse{
-  0%,100%{opacity:.06}
-  25%,75%{opacity:.22}
-  50%{opacity:.58}
-}
-@keyframes continuous-pick-pulse{
-  0%,100%{opacity:.06}
-  25%,75%{opacity:.18}
-  50%{opacity:.48}
-}
+@keyframes continuous-ban-pulse{0%{opacity:0.0600}2.5%{opacity:0.0632}5%{opacity:0.0727}7.5%{opacity:0.0883}10%{opacity:0.1097}12.5%{opacity:0.1362}15%{opacity:0.1672}17.5%{opacity:0.2020}20%{opacity:0.2397}22.5%{opacity:0.2793}25%{opacity:0.3200}27.5%{opacity:0.3607}30%{opacity:0.4003}32.5%{opacity:0.4380}35%{opacity:0.4728}37.5%{opacity:0.5038}40%{opacity:0.5303}42.5%{opacity:0.5517}45%{opacity:0.5673}47.5%{opacity:0.5768}50%{opacity:0.5800}52.5%{opacity:0.5768}55%{opacity:0.5673}57.5%{opacity:0.5517}60%{opacity:0.5303}62.5%{opacity:0.5038}65%{opacity:0.4728}67.5%{opacity:0.4380}70%{opacity:0.4003}72.5%{opacity:0.3607}75%{opacity:0.3200}77.5%{opacity:0.2793}80%{opacity:0.2397}82.5%{opacity:0.2020}85%{opacity:0.1672}87.5%{opacity:0.1362}90%{opacity:0.1097}92.5%{opacity:0.0883}95%{opacity:0.0727}97.5%{opacity:0.0632}100%{opacity:0.0600}}
+@keyframes continuous-pick-pulse{0%{opacity:0.0600}2.5%{opacity:0.0626}5%{opacity:0.0703}7.5%{opacity:0.0829}10%{opacity:0.1001}12.5%{opacity:0.1215}15%{opacity:0.1466}17.5%{opacity:0.1747}20%{opacity:0.2051}22.5%{opacity:0.2371}25%{opacity:0.2700}27.5%{opacity:0.3029}30%{opacity:0.3349}32.5%{opacity:0.3653}35%{opacity:0.3934}37.5%{opacity:0.4185}40%{opacity:0.4399}42.5%{opacity:0.4571}45%{opacity:0.4697}47.5%{opacity:0.4774}50%{opacity:0.4800}52.5%{opacity:0.4774}55%{opacity:0.4697}57.5%{opacity:0.4571}60%{opacity:0.4399}62.5%{opacity:0.4185}65%{opacity:0.3934}67.5%{opacity:0.3653}70%{opacity:0.3349}72.5%{opacity:0.3029}75%{opacity:0.2700}77.5%{opacity:0.2371}80%{opacity:0.2051}82.5%{opacity:0.1747}85%{opacity:0.1466}87.5%{opacity:0.1215}90%{opacity:0.1001}92.5%{opacity:0.0829}95%{opacity:0.0703}97.5%{opacity:0.0626}100%{opacity:0.0600}}
 </style>
 </head>
 <body><main class="wrap">
