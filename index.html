@@ -566,3 +566,44 @@ body.pick-side-red .slot.active-slot.pick-preview>.pick-pending-label{
   .slot.active-slot.pick-preview>.pick-pending-label{animation:none!important;opacity:1!important}
 }
 </style>
+
+<style id="pulse-whole-active-draft-box">
+/* Lampeggia il riquadro intero; nessun bordo che percorre il perimetro */
+.slot.active-slot,.slot.active-slot.pick-preview,.ban-slot.active-slot{
+  animation:none!important;filter:none!important;transform:none!important
+}
+.pick-slot-placeholder,.ban-slot-label{animation:none!important;opacity:1!important;filter:none!important}
+.ban-slot.active-slot{
+  border:2px solid rgba(255,255,255,.38)!important;
+  background:#080b12!important;color:#f3f6ff!important;box-shadow:none!important;
+  animation:soft-white-ban-box 2.8s ease-in-out infinite!important
+}
+body.pick-side-blue .slot.active-slot,body.pick-side-blue .slot.active-slot.pick-preview{
+  border:2px solid rgba(100,169,255,.34)!important;
+  background:rgba(100,169,255,.035)!important;box-shadow:none!important;
+  animation:soft-blue-pick-box 2.8s ease-in-out infinite!important
+}
+body.pick-side-red .slot.active-slot,body.pick-side-red .slot.active-slot.pick-preview{
+  border:2px solid rgba(255,114,124,.34)!important;
+  background:rgba(255,114,124,.035)!important;box-shadow:none!important;
+  animation:soft-red-pick-box 2.8s ease-in-out infinite!important
+}
+@keyframes soft-white-ban-box{
+  0%,100%{border-color:rgba(255,255,255,.30);background:#080b12;box-shadow:0 0 0 0 rgba(255,255,255,0)}
+  50%{border-color:rgba(255,255,255,.72);background:#11151c;box-shadow:0 0 12px 2px rgba(255,255,255,.13)}
+}
+@keyframes soft-blue-pick-box{
+  0%,100%{border-color:rgba(100,169,255,.27);background:rgba(100,169,255,.025);box-shadow:0 0 0 0 rgba(100,169,255,0)}
+  50%{border-color:rgba(100,169,255,.64);background:rgba(100,169,255,.075);box-shadow:0 0 12px 2px rgba(100,169,255,.15)}
+}
+@keyframes soft-red-pick-box{
+  0%,100%{border-color:rgba(255,114,124,.27);background:rgba(255,114,124,.025);box-shadow:0 0 0 0 rgba(255,114,124,0)}
+  50%{border-color:rgba(255,114,124,.64);background:rgba(255,114,124,.075);box-shadow:0 0 12px 2px rgba(255,114,124,.15)}
+}
+@media(prefers-reduced-motion:reduce){
+  .slot.active-slot,.slot.active-slot.pick-preview,.ban-slot.active-slot{animation:none!important}
+  .ban-slot.active-slot{border-color:rgba(255,255,255,.58)!important}
+  body.pick-side-blue .slot.active-slot{border-color:rgba(100,169,255,.52)!important}
+  body.pick-side-red .slot.active-slot{border-color:rgba(255,114,124,.52)!important}
+}
+</style>
