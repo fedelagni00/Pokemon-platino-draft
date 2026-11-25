@@ -792,13 +792,52 @@ body.pick-side-red #grid .poke:hover:not(:disabled){border-color:#ff9da4!importa
  body.connection-lobby .side .how li{margin:0 0 9px!important;line-height:1.5!important}
 }
 </style>
-<style id="draft-rules-card-style">.draft-rules-card{width:min(100%,700px);margin:0 auto 24px;padding:clamp(16px,3vw,26px);border:1px solid #526584;border-radius:18px;background:linear-gradient(145deg,#17243b,#101725);text-align:left;box-shadow:0 8px 24px #0003}.draft-rules-card h2{margin:0 0 8px;color:#ffd36e;font-size:clamp(21px,4vw,29px);text-align:center}.draft-rules-intro{margin:0 0 16px!important;color:#eef4ff!important;font-size:14px!important;font-weight:500!important;line-height:1.5}.draft-rules-phase{margin:8px 0;padding:12px 14px;border-left:4px solid #64a9ff;border-radius:8px;background:#0d1423}.draft-rules-phase strong{display:block;color:#fff;font-size:15px;margin-bottom:3px}.draft-rules-phase span{display:block;color:#c4d0e6;font-size:13px;line-height:1.5}.draft-rules-phase:nth-of-type(3){border-left-color:#ff727c}.draft-rules-note{margin:12px 0 0!important;color:#a7b4d0!important;font-size:12px!important;line-height:1.5}@media(max-width:600px){.draft-rules-card{padding:14px;margin-bottom:18px}.draft-rules-phase{padding:10px}.draft-rules-phase strong{font-size:14px}.draft-rules-phase span{font-size:12px}}</style><style id="ban-flash-single-source">
-#aBans .ban-slot.active-slot,#bBans .ban-slot.active-slot{position:relative!important;overflow:hidden!important;background:#080b12!important;border:2px solid rgba(255,255,255,.28)!important;animation:none!important;box-shadow:none!important}
-#aBans .ban-slot.active-slot .ban-flash-layer,#bBans .ban-slot.active-slot .ban-flash-layer{position:absolute!important;inset:0!important;z-index:2!important;pointer-events:none!important;background:#bfc5ce!important;opacity:0;display:block!important;border-radius:inherit!important;will-change:opacity}
-#aBans .ban-slot.active-slot .ban-pulse-overlay,#bBans .ban-slot.active-slot .ban-pulse-overlay{display:none!important}
-</style>
-<script id="ban-flash-single-source-script">
-(()=>{let observer;function attach(){document.querySelectorAll('#aBans .ban-slot.active-slot,#bBans .ban-slot.active-slot').forEach(slot=>{let layer=slot.querySelector('.ban-flash-layer');if(!layer){layer=document.createElement('span');layer.className='ban-flash-layer';slot.appendChild(layer)} });}function animate(time){attach();const phase=(time%5200)/5200;const eased=(1-Math.cos(2*Math.PI*phase))/2;const opacity=0.20*eased;document.querySelectorAll('#aBans .ban-slot.active-slot .ban-flash-layer,#bBans .ban-slot.active-slot .ban-flash-layer').forEach(layer=>{layer.style.opacity=opacity.toFixed(4)});requestAnimationFrame(animate)}attach();requestAnimationFrame(animate);observer=new MutationObserver(attach);observer.observe(document.body,{childList:true,subtree:true});})();
-</script>
+<style id="draft-rules-card-style">.draft-rules-card{width:min(100%,700px);margin:0 auto 24px;padding:clamp(16px,3vw,26px);border:1px solid #526584;border-radius:18px;background:linear-gradient(145deg,#17243b,#101725);text-align:left;box-shadow:0 8px 24px #0003}.draft-rules-card h2{margin:0 0 8px;color:#ffd36e;font-size:clamp(21px,4vw,29px);text-align:center}.draft-rules-intro{margin:0 0 16px!important;color:#eef4ff!important;font-size:14px!important;font-weight:500!important;line-height:1.5}.draft-rules-phase{margin:8px 0;padding:12px 14px;border-left:4px solid #64a9ff;border-radius:8px;background:#0d1423}.draft-rules-phase strong{display:block;color:#fff;font-size:15px;margin-bottom:3px}.draft-rules-phase span{display:block;color:#c4d0e6;font-size:13px;line-height:1.5}.draft-rules-phase:nth-of-type(3){border-left-color:#ff727c}.draft-rules-note{margin:12px 0 0!important;color:#a7b4d0!important;font-size:12px!important;line-height:1.5}@media(max-width:600px){.draft-rules-card{padding:14px;margin-bottom:18px}.draft-rules-phase{padding:10px}.draft-rules-phase strong{font-size:14px}.draft-rules-phase span{font-size:12px}}</style>
+
 </body>
 </html>
+<style id="desktop-turn-pulse-unified">
+/* PC: un solo lampeggio dell’intero riquadro attivo, senza effetti sovrapposti */
+@media(min-width:601px){
+  #aPicks .slot.active-slot,#bPicks .slot.active-slot,
+  #aBans .ban-slot.active-slot,#bBans .ban-slot.active-slot{
+    position:relative!important;isolation:isolate!important;overflow:hidden!important;
+    animation:none!important;transition:none!important
+  }
+  #aPicks .slot.active-slot .pick-pulse-overlay,#bPicks .slot.active-slot .pick-pulse-overlay{
+    position:absolute!important;inset:0!important;z-index:1!important;display:block!important;
+    border-radius:inherit!important;pointer-events:none!important;opacity:0;
+    animation:pc-pick-overlay 1.55s ease-in-out infinite!important
+  }
+  #aPicks .slot.active-slot>:not(.pick-pulse-overlay),#bPicks .slot.active-slot>:not(.pick-pulse-overlay){
+    position:relative!important;z-index:2!important
+  }
+  body.pick-side-blue #aPicks .slot.active-slot,body.pick-side-blue #bPicks .slot.active-slot{
+    border:2px solid rgba(100,169,255,.38)!important;background:rgba(100,169,255,.035)!important;
+    animation:pc-blue-frame-pulse 1.55s ease-in-out infinite!important
+  }
+  body.pick-side-red #aPicks .slot.active-slot,body.pick-side-red #bPicks .slot.active-slot{
+    border:2px solid rgba(255,114,124,.38)!important;background:rgba(255,114,124,.035)!important;
+    animation:pc-red-frame-pulse 1.55s ease-in-out infinite!important
+  }
+  body.pick-side-blue #aPicks .slot.active-slot .pick-pulse-overlay,body.pick-side-blue #bPicks .slot.active-slot .pick-pulse-overlay{background:rgba(100,169,255,.30)!important}
+  body.pick-side-red #aPicks .slot.active-slot .pick-pulse-overlay,body.pick-side-red #bPicks .slot.active-slot .pick-pulse-overlay{background:rgba(255,114,124,.30)!important}
+  #aBans .ban-slot.active-slot,#bBans .ban-slot.active-slot{
+    border:2px solid rgba(255,255,255,.40)!important;background:#080b12!important;color:#fff!important;
+    animation:pc-white-ban-pulse 1.55s ease-in-out infinite!important
+  }
+}
+@keyframes pc-pick-overlay{0%,100%{opacity:0}50%{opacity:.24}}
+@keyframes pc-blue-frame-pulse{
+  0%,100%{border-color:rgba(100,169,255,.35);background:rgba(100,169,255,.025);box-shadow:0 0 0 rgba(100,169,255,0)}
+  50%{border-color:rgba(100,169,255,.88);background:rgba(100,169,255,.11);box-shadow:0 0 18px 3px rgba(100,169,255,.22)}
+}
+@keyframes pc-red-frame-pulse{
+  0%,100%{border-color:rgba(255,114,124,.35);background:rgba(255,114,124,.025);box-shadow:0 0 0 rgba(255,114,124,0)}
+  50%{border-color:rgba(255,114,124,.88);background:rgba(255,114,124,.11);box-shadow:0 0 18px 3px rgba(255,114,124,.22)}
+}
+@keyframes pc-white-ban-pulse{
+  0%,100%{border-color:rgba(255,255,255,.34);background:#080b12;box-shadow:0 0 0 rgba(255,255,255,0)}
+  50%{border-color:rgba(255,255,255,.94);background:#171a20;box-shadow:0 0 18px 3px rgba(255,255,255,.24)}
+}
+</style>
