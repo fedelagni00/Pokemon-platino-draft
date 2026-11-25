@@ -838,7 +838,25 @@ body.pick-side-red .slot.active-slot,body.pick-side-red .slot.active-slot.pick-p
 @media(prefers-reduced-motion:reduce){
  #aBans .ban-slot.active-slot,#bBans .ban-slot.active-slot{animation:banFlashDevice 2.4s ease-in-out infinite!important}
 }
-</style></head>
+</style>
+<style id="desktop-ban-flash-repair">
+/* Ripristina il lampeggio BAN su desktop; mobile resta gestito dalle regole esistenti */
+@media (min-width:601px){
+  #aBans .ban-slot.active-slot,
+  #bBans .ban-slot.active-slot{
+    animation:desktopBanFlashRepair 1.25s ease-in-out infinite!important;
+    animation-play-state:running!important;
+    background-color:#080b12!important;
+    border:3px solid #fff!important;
+    will-change:background-color,box-shadow;
+  }
+}
+@keyframes desktopBanFlashRepair{
+  0%,100%{background-color:#080b12;box-shadow:0 0 0 0 rgba(255,255,255,0)}
+  50%{background-color:#f5f5f5;box-shadow:0 0 20px 5px rgba(255,255,255,.65)}
+}
+</style>
+</head>
 <body><main class="wrap">
 <header><h1>Draft Pokémon</h1><div class="top"><span class="pill">Pokémon Platino</span><span class="pill">Roster di Sinnoh prima della Lega</span><span class="pill">6 Pokémon per squadra · 6 ban per squadra</span></div></header><div class="player-name-badge" id="playerNameBadge" hidden aria-live="polite"></div><section class="guest-wait-banner" id="guestWaitBanner" hidden role="status" aria-live="polite"><span>IN ATTESA DEL LANCIO</span><strong>IL GIOCATORE COLLEGATO<br>LANCERÀ LA MONETA</strong></section><section class="player-name-panel" id="playerNamePanel" hidden><h2>Nome giocatore</h2><p>Il nome apparirà nella draft accanto al tuo side.</p><div class="player-name-row"><input id="playerNameInput" type="text" maxlength="20" placeholder="Scrivi il tuo nome" autocomplete="nickname" aria-label="Il tuo nome"><button type="button" class="action primary" id="savePlayerName">CONFERMA</button></div><p id="playerNameFeedback" aria-live="polite"></p></section><section class="connection-panel"><div class="connection-row"><button class="action primary" id="createRoom">Crea stanza</button><input id="roomInput" type="text" maxlength="6" placeholder="Inserisci il codice nell'altro dispositivo" aria-label="Inserisci il codice nell’altro dispositivo" autocomplete="off"><button class="action" id="joinRoom">Entra</button></div><div class="room-code" id="roomCodeBox" hidden>Codice da condividere<strong id="roomCode">------</strong><button class="action" id="copyRoom" style="margin-top:8px">Copia codice</button></div><div class="connection-status" id="connectionStatus"></div></section><section class="timer-settings"><label class="timer-option"><input id="timerToggle" type="checkbox"> Attiva il timer di 30 secondi per ogni turno</label><div class="timer-readout" id="turnTimer" hidden></div></section><div id="sideAssignedOverlay" hidden aria-live="assertive"><div class="side-assigned-card"><strong id="sideAssignedText"></strong></div></div><section class="ready-panel" id="readyPanel" hidden><div class="draft-rules-card" id="draftRulesCard"><h2>Regole Ban &amp; Pick</h2><p class="draft-rules-intro">Ogni giocatore costruisce la propria squadra scegliendo 6 Pokémon e bannandone 3. L’ordine delle fasi è fisso:</p><div class="draft-rules-phase"><strong>1 · BAN iniziali — 3 a testa</strong><span>Si alternano 6 ban totali: A → B → A → B → A → B.</span></div><div class="draft-rules-phase"><strong>2 · PICK — 5 scelte</strong><span>Ordine: B → A → A → B → A. Si selezionano Pokémon per la squadra.</span></div><div class="draft-rules-phase"><strong>3 · BAN finali — 3 a testa</strong><span>Altri 6 ban alternati: B → A → B → A → B → A.</span></div><div class="draft-rules-phase"><strong>4 · PICK finali — 7 scelte</strong><span>Ordine: B → A → B → A → B → A → B. Al termine ogni squadra avrà 6 Pokémon.</span></div><p class="draft-rules-note">A e B indicano i giocatori: il lato Blu/Rosso viene assegnato dal lancio della moneta.</p></div><p id="coinStatus">Sorteggio del lato</p><button class="ready-button" id="coinStart">TESTA O CROCE</button><div class="side-choice" id="sideChoice" hidden><button type="button" id="pickBlue" class="side-button blue-side">BLUE SIDE</button><button type="button" id="pickRed" class="side-button red-side">RED SIDE</button></div><p id="readyStatus" hidden></p><button class="ready-button" id="readyButton" hidden>PRONTO</button></section>
 
