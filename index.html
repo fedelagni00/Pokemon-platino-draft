@@ -863,9 +863,10 @@ body.pick-side-red #grid .poke:hover:not(:disabled){border-color:#ff9da4!importa
 </style>
 
 <style id="pick-side-pulse-match-ban">
-/* Pick: stessa pulsazione continua e graduale dei ban, colorata per side */
+/* Pick con colore side più intenso, ciclo veloce e sfumatura morbida */
 #aPicks .slot.active-slot,#bPicks .slot.active-slot{
-  position:relative!important;isolation:isolate!important;overflow:hidden!important
+  position:relative!important;isolation:isolate!important;overflow:hidden!important;
+  transition:none!important
 }
 #aPicks .slot.active-slot .pick-pulse-overlay,
 #bPicks .slot.active-slot .pick-pulse-overlay{
@@ -877,32 +878,30 @@ body.pick-side-red #grid .poke:hover:not(:disabled){border-color:#ff9da4!importa
   position:relative!important;z-index:2!important
 }
 body.pick-side-blue #aPicks .slot.active-slot,body.pick-side-blue #bPicks .slot.active-slot{
-  border:2px solid rgba(100,169,255,.52)!important;background:rgba(100,169,255,.045)!important;
-  animation:pick-blue-frame 3s ease-in-out infinite alternate!important
+  border:2px solid rgba(100,169,255,.78)!important;background:rgba(100,169,255,.12)!important;
+  animation:pick-blue-frame 1.25s ease-in-out infinite!important
 }
 body.pick-side-blue #aPicks .slot.active-slot .pick-pulse-overlay,
 body.pick-side-blue #bPicks .slot.active-slot .pick-pulse-overlay{
-  background:rgba(100,169,255,.42)!important;opacity:.08;
-  animation:pick-blue-fill 3s ease-in-out infinite alternate!important
+  background:rgba(65,145,255,.76)!important;animation:pick-blue-fill 1.25s ease-in-out infinite!important
 }
 body.pick-side-red #aPicks .slot.active-slot,body.pick-side-red #bPicks .slot.active-slot{
-  border:2px solid rgba(255,114,124,.52)!important;background:rgba(255,114,124,.045)!important;
-  animation:pick-red-frame 3s ease-in-out infinite alternate!important
+  border:2px solid rgba(255,91,108,.78)!important;background:rgba(255,91,108,.12)!important;
+  animation:pick-red-frame 1.25s ease-in-out infinite!important
 }
 body.pick-side-red #aPicks .slot.active-slot .pick-pulse-overlay,
 body.pick-side-red #bPicks .slot.active-slot .pick-pulse-overlay{
-  background:rgba(255,114,124,.42)!important;opacity:.08;
-  animation:pick-red-fill 3s ease-in-out infinite alternate!important
+  background:rgba(255,65,82,.76)!important;animation:pick-red-fill 1.25s ease-in-out infinite!important
 }
-@keyframes pick-blue-fill{from{opacity:.08}to{opacity:.46}}
-@keyframes pick-red-fill{from{opacity:.08}to{opacity:.46}}
+@keyframes pick-blue-fill{0%,100%{opacity:.08}50%{opacity:.38}}
+@keyframes pick-red-fill{0%,100%{opacity:.08}50%{opacity:.38}}
 @keyframes pick-blue-frame{
-  from{border-color:rgba(100,169,255,.42);box-shadow:0 0 2px rgba(100,169,255,.04);background:rgba(100,169,255,.025)}
-  to{border-color:#64a9ff;box-shadow:0 0 18px 3px rgba(100,169,255,.24);background:rgba(100,169,255,.12)}
+  0%,100%{border-color:rgba(100,169,255,.62);box-shadow:0 0 3px rgba(65,145,255,.08);background:rgba(65,145,255,.07)}
+  50%{border-color:#64a9ff;box-shadow:0 0 17px 3px rgba(65,145,255,.3);background:rgba(65,145,255,.2)}
 }
 @keyframes pick-red-frame{
-  from{border-color:rgba(255,114,124,.42);box-shadow:0 0 2px rgba(255,114,124,.04);background:rgba(255,114,124,.025)}
-  to{border-color:#ff727c;box-shadow:0 0 18px 3px rgba(255,114,124,.24);background:rgba(255,114,124,.12)}
+  0%,100%{border-color:rgba(255,91,108,.62);box-shadow:0 0 3px rgba(255,65,82,.08);background:rgba(255,65,82,.07)}
+  50%{border-color:#ff5b6c;box-shadow:0 0 17px 3px rgba(255,65,82,.3);background:rgba(255,65,82,.2)}
 }
 </style>
 
