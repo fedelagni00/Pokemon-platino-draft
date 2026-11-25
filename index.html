@@ -1000,3 +1000,16 @@ body.pick-side-red #grid .poke:hover:not(:disabled){border-color:#ff9da4!importa
 }
 @media(max-width:360px){#completeOverlay:not([hidden]) .complete-overlay-title{font-size:clamp(28px,8.5vw,34px)!important}}
 </style>
+
+<style id="hide-two-phone-connection-box-and-mobile-rules">
+/* Nasconde il riquadro Gioca con due telefoni e i suoi contenuti */
+.connection-panel{display:none!important}
+/* Regolamento sempre leggibile anche sul telefono nella schermata iniziale */
+@media(max-width:600px){
+ body.connection-lobby .workspace{display:block!important}
+ body.connection-lobby .side{display:block!important;width:100%!important;max-width:none!important;margin:12px auto!important;padding:16px!important}
+ body.connection-lobby .side .how,body.connection-lobby .side .how ol,body.connection-lobby .side .how li{display:block!important;visibility:visible!important;opacity:1!important}
+ body.connection-lobby .side .how ol{padding-left:22px!important;margin:10px 0!important}
+ body.connection-lobby .side .how li{margin:0 0 9px!important;line-height:1.5!important}
+}
+</style>
