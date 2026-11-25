@@ -863,7 +863,7 @@ body.pick-side-red #grid .poke:hover:not(:disabled){border-color:#ff9da4!importa
 </style>
 
 <style id="pick-side-pulse-match-ban">
-/* Pick con colore side più intenso, ciclo veloce e sfumatura morbida */
+/* Pick con colore side più intenso, ciclo continuo con sfumatura più graduale */
 #aPicks .slot.active-slot,#bPicks .slot.active-slot{
   position:relative!important;isolation:isolate!important;overflow:hidden!important;
   transition:none!important
@@ -879,19 +879,19 @@ body.pick-side-red #grid .poke:hover:not(:disabled){border-color:#ff9da4!importa
 }
 body.pick-side-blue #aPicks .slot.active-slot,body.pick-side-blue #bPicks .slot.active-slot{
   border:2px solid rgba(100,169,255,.78)!important;background:rgba(100,169,255,.12)!important;
-  animation:pick-blue-frame 1.25s linear infinite!important
+  animation:pick-blue-frame 1.8s ease-in-out infinite!important
 }
 body.pick-side-blue #aPicks .slot.active-slot .pick-pulse-overlay,
 body.pick-side-blue #bPicks .slot.active-slot .pick-pulse-overlay{
-  background:rgba(65,145,255,.76)!important;animation:pick-blue-fill 1.25s linear infinite!important
+  background:rgba(65,145,255,.76)!important;animation:pick-blue-fill 1.8s ease-in-out infinite!important
 }
 body.pick-side-red #aPicks .slot.active-slot,body.pick-side-red #bPicks .slot.active-slot{
   border:2px solid rgba(255,91,108,.78)!important;background:rgba(255,91,108,.12)!important;
-  animation:pick-red-frame 1.25s linear infinite!important
+  animation:pick-red-frame 1.8s ease-in-out infinite!important
 }
 body.pick-side-red #aPicks .slot.active-slot .pick-pulse-overlay,
 body.pick-side-red #bPicks .slot.active-slot .pick-pulse-overlay{
-  background:rgba(255,65,82,.76)!important;animation:pick-red-fill 1.25s linear infinite!important
+  background:rgba(255,65,82,.76)!important;animation:pick-red-fill 1.8s ease-in-out infinite!important
 }
 @keyframes pick-blue-fill{0%{opacity:.2}50%{opacity:.48}100%{opacity:.2}}
 @keyframes pick-red-fill{0%{opacity:.2}50%{opacity:.48}100%{opacity:.2}}
