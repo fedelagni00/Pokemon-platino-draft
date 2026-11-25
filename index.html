@@ -879,29 +879,31 @@ body.pick-side-red #grid .poke:hover:not(:disabled){border-color:#ff9da4!importa
 }
 body.pick-side-blue #aPicks .slot.active-slot,body.pick-side-blue #bPicks .slot.active-slot{
   border:2px solid rgba(100,169,255,.78)!important;background:rgba(100,169,255,.12)!important;
-  animation:pick-blue-frame 1.25s ease-in-out infinite!important
+  animation:pick-blue-frame 1.25s linear infinite!important
 }
 body.pick-side-blue #aPicks .slot.active-slot .pick-pulse-overlay,
 body.pick-side-blue #bPicks .slot.active-slot .pick-pulse-overlay{
-  background:rgba(65,145,255,.76)!important;animation:pick-blue-fill 1.25s ease-in-out infinite!important
+  background:rgba(65,145,255,.76)!important;animation:pick-blue-fill 1.25s linear infinite!important
 }
 body.pick-side-red #aPicks .slot.active-slot,body.pick-side-red #bPicks .slot.active-slot{
   border:2px solid rgba(255,91,108,.78)!important;background:rgba(255,91,108,.12)!important;
-  animation:pick-red-frame 1.25s ease-in-out infinite!important
+  animation:pick-red-frame 1.25s linear infinite!important
 }
 body.pick-side-red #aPicks .slot.active-slot .pick-pulse-overlay,
 body.pick-side-red #bPicks .slot.active-slot .pick-pulse-overlay{
-  background:rgba(255,65,82,.76)!important;animation:pick-red-fill 1.25s ease-in-out infinite!important
+  background:rgba(255,65,82,.76)!important;animation:pick-red-fill 1.25s linear infinite!important
 }
-@keyframes pick-blue-fill{0%,100%{opacity:.08}50%{opacity:.38}}
-@keyframes pick-red-fill{0%,100%{opacity:.08}50%{opacity:.38}}
+@keyframes pick-blue-fill{0%{opacity:.08}50%{opacity:.38}100%{opacity:.08}}
+@keyframes pick-red-fill{0%{opacity:.08}50%{opacity:.38}100%{opacity:.08}}
 @keyframes pick-blue-frame{
-  0%,100%{border-color:rgba(100,169,255,.62);box-shadow:0 0 3px rgba(65,145,255,.08);background:rgba(65,145,255,.07)}
+  0%{border-color:rgba(100,169,255,.62);box-shadow:0 0 3px rgba(65,145,255,.08);background:rgba(65,145,255,.07)}
   50%{border-color:#64a9ff;box-shadow:0 0 17px 3px rgba(65,145,255,.3);background:rgba(65,145,255,.2)}
+  100%{border-color:rgba(100,169,255,.62);box-shadow:0 0 3px rgba(65,145,255,.08);background:rgba(65,145,255,.07)}
 }
 @keyframes pick-red-frame{
-  0%,100%{border-color:rgba(255,91,108,.62);box-shadow:0 0 3px rgba(255,65,82,.08);background:rgba(255,65,82,.07)}
+  0%{border-color:rgba(255,91,108,.62);box-shadow:0 0 3px rgba(255,65,82,.08);background:rgba(255,65,82,.07)}
   50%{border-color:#ff5b6c;box-shadow:0 0 17px 3px rgba(255,65,82,.3);background:rgba(255,65,82,.2)}
+  100%{border-color:rgba(255,91,108,.62);box-shadow:0 0 3px rgba(255,65,82,.08);background:rgba(255,65,82,.07)}
 }
 </style>
 
