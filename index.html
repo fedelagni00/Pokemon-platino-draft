@@ -1027,10 +1027,10 @@ body.pick-side-red #grid .poke:hover:not(:disabled){border-color:#ff9da4!importa
 </script>
 <style id="ban-flash-overlay-method">
 #aBans .ban-slot.active-slot,#bBans .ban-slot.active-slot{position:relative!important;overflow:hidden!important;background:#080b12!important}
-#aBans .ban-slot.active-slot .ban-flash-layer,#bBans .ban-slot.active-slot .ban-flash-layer{position:absolute!important;inset:0!important;z-index:10!important;pointer-events:none!important;background:#dedede!important;opacity:0!important;transition:opacity 1.5s ease-in-out!important;display:block!important;border-radius:inherit!important}
+#aBans .ban-slot.active-slot .ban-flash-layer,#bBans .ban-slot.active-slot .ban-flash-layer{position:absolute!important;inset:0!important;z-index:10!important;pointer-events:none!important;background:#d9d9d9!important;opacity:0!important;display:block!important;border-radius:inherit!important;will-change:opacity}
 </style>
 <script id="ban-flash-overlay-method-script">
-(()=>{function sync(){document.querySelectorAll('#aBans .ban-slot.active-slot,#bBans .ban-slot.active-slot').forEach(slot=>{let layer=slot.querySelector('.ban-flash-layer');if(!layer){layer=document.createElement('span');layer.className='ban-flash-layer';slot.appendChild(layer)} });}let bright=false;function pulse(){sync();bright=!bright;document.querySelectorAll('#aBans .ban-slot.active-slot .ban-flash-layer,#bBans .ban-slot.active-slot .ban-flash-layer').forEach(layer=>layer.style.setProperty('opacity',bright?'1':'0','important'));}sync();setInterval(pulse,1800);new MutationObserver(sync).observe(document.body,{subtree:true,childList:true});})();
+(()=>{let raf=0;function sync(){document.querySelectorAll('#aBans .ban-slot.active-slot,#bBans .ban-slot.active-slot').forEach(slot=>{if(!slot.querySelector('.ban-flash-layer')){const layer=document.createElement('span');layer.className='ban-flash-layer';slot.appendChild(layer)}})}function frame(t){sync();const opacity=0.24*(0.5-0.5*Math.cos(2*Math.PI*t/4200));document.querySelectorAll('#aBans .ban-slot.active-slot .ban-flash-layer,#bBans .ban-slot.active-slot .ban-flash-layer').forEach(layer=>layer.style.opacity=opacity.toFixed(3));raf=requestAnimationFrame(frame)}sync();requestAnimationFrame(frame);new MutationObserver(sync).observe(document.body,{subtree:true,childList:true});})();
 </script>
 </body>
 </html>
