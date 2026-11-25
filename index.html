@@ -948,3 +948,23 @@ body.pick-side-red #grid .poke:hover:not(:disabled){border-color:#ff9da4!importa
 </style>
 </body>
 </html>
+
+<style id="ban-flash-extra-smooth">
+/* Dissolvenza BAN piu lenta e morbida: solo effetto visivo */
+#aBans .ban-slot.active-slot,
+#bBans .ban-slot.active-slot{
+  animation:ban-box-smooth 2.6s ease-in-out infinite!important;
+}
+@keyframes ban-box-smooth{
+  0%,100%{background-color:#080b12;box-shadow:0 0 0 0 rgba(255,255,255,0)}
+  50%{background-color:#e9edf3;box-shadow:0 0 16px 3px rgba(255,255,255,.48),inset 0 0 10px rgba(255,255,255,.2)}
+}
+#aBans .ban-slot.active-slot .ban-pulse-overlay,
+#bBans .ban-slot.active-slot .ban-pulse-overlay{
+  animation:ban-overlay-smooth 2.6s ease-in-out infinite!important;
+}
+@keyframes ban-overlay-smooth{
+  0%,100%{opacity:0}
+  50%{opacity:.38}
+}
+</style>
