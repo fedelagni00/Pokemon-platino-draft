@@ -907,14 +907,23 @@ body.pick-side-red #bPicks .slot.active-slot .pick-pulse-overlay{
 </style>
 
 <style id="final-ban-pulse-and-hide-room-box">
-/* Ripristina il lampeggio bianco morbido e uniforme usato prima */
+/* Pulsazione bianca continua e visibile del ban attivo */
 #aBans .ban-slot.active-slot,#bBans .ban-slot.active-slot{
   position:relative!important;isolation:isolate!important;overflow:hidden!important;
-  border:2px solid rgba(255,255,255,.36)!important;background:#080b12!important;color:#fff!important;
-  animation:visible-white-ban-pulse 1.55s ease-in-out infinite!important
+  border:2px solid rgba(255,255,255,.42)!important;background:#080b12!important;
+  animation:ban-pulse-frame-live 1.6s ease-in-out infinite!important
 }
 #aBans .ban-slot.active-slot .ban-pulse-overlay,
-#bBans .ban-slot.active-slot .ban-pulse-overlay{display:none!important}
+#bBans .ban-slot.active-slot .ban-pulse-overlay{
+  position:absolute!important;inset:0!important;z-index:0!important;display:block!important;
+  border-radius:inherit!important;background:#fff!important;pointer-events:none!important;
+  animation:ban-pulse-fill-live 1.6s ease-in-out infinite!important;will-change:opacity
+}
+@keyframes ban-pulse-fill-live{0%,100%{opacity:.04}50%{opacity:.38}}
+@keyframes ban-pulse-frame-live{
+  0%,100%{border-color:rgba(255,255,255,.38);box-shadow:0 0 2px rgba(255,255,255,.03);background:#080b12}
+  50%{border-color:#fff;box-shadow:0 0 16px 2px rgba(255,255,255,.2);background:#11151c}
+}
 .connection-panel[hidden]{display:none!important}
 .connection-panel:not([hidden]){display:block!important}
 </style>
