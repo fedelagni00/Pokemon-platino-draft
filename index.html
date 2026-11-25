@@ -599,3 +599,13 @@ body.pick-side-red #grid .poke:hover:not(:disabled){border-color:#ff9da4!importa
 #aBans .ban-slot.active-slot .ban-pulse-overlay,#bBans .ban-slot.active-slot .ban-pulse-overlay{display:block!important;position:absolute!important;inset:0!important;z-index:1!important;pointer-events:none!important;border-radius:inherit!important;background:#fff!important;opacity:0!important;animation:none!important}
 </style></body>
 </html>
+
+<style id="restore-intro-screen-layout">
+/* Ripristina la schermata iniziale fullscreen: questa regola era stata eliminata insieme agli stili BAN */
+#draftTitleOverlay:not([hidden]){
+  position:fixed!important;inset:0!important;z-index:10000!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  box-sizing:border-box!important;width:100vw!important;height:100svh!important;min-height:100svh!important;
+  padding:12px!important;overflow:auto!important;background:#0b1020!important;backdrop-filter:none!important
+}
+</style>
