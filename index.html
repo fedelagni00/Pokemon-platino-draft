@@ -905,3 +905,26 @@ body.pick-side-red #bPicks .slot.active-slot .pick-pulse-overlay{
   to{border-color:#ff727c;box-shadow:0 0 18px 3px rgba(255,114,124,.24);background:rgba(255,114,124,.12)}
 }
 </style>
+
+<style id="final-ban-pulse-and-hide-room-box">
+/* Un unico ciclo bianco, graduale e continuo per il ban attivo */
+#aBans .ban-slot.active-slot,#bBans .ban-slot.active-slot{
+  position:relative!important;isolation:isolate!important;overflow:hidden!important;
+  border:2px solid rgba(255,255,255,.46)!important;background:#080b12!important;
+  animation:final-ban-frame 3s ease-in-out infinite alternate!important
+}
+#aBans .ban-slot.active-slot .ban-pulse-overlay,
+#bBans .ban-slot.active-slot .ban-pulse-overlay{
+  position:absolute!important;inset:0!important;z-index:0!important;display:block!important;
+  border-radius:inherit!important;background:#fff!important;pointer-events:none!important;
+  opacity:.08;animation:final-ban-fill 3s ease-in-out infinite alternate!important;will-change:opacity
+}
+@keyframes final-ban-fill{from{opacity:.08}to{opacity:.48}}
+@keyframes final-ban-frame{
+  from{border-color:rgba(255,255,255,.44);box-shadow:0 0 2px rgba(255,255,255,.04)}
+  to{border-color:#fff;box-shadow:0 0 18px 3px rgba(255,255,255,.25)}
+}
+/* L'area stanza è visibile solo finché la connessione non è avvenuta */
+.connection-panel[hidden]{display:none!important}
+.connection-panel:not([hidden]){display:block!important}
+</style>
