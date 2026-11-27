@@ -806,6 +806,24 @@ body.pick-side-red #grid .poke:hover:not(:disabled){border-color:#ff9da4!importa
 <style id="draft-rules-card-style">.draft-rules-card{width:min(100%,700px);margin:0 auto 24px;padding:clamp(16px,3vw,26px);border:1px solid #526584;border-radius:18px;background:linear-gradient(145deg,#17243b,#101725);text-align:left;box-shadow:0 8px 24px #0003}.draft-rules-card h2{margin:0 0 8px;color:#ffd36e;font-size:clamp(21px,4vw,29px);text-align:center}.draft-rules-intro{margin:0 0 16px!important;color:#eef4ff!important;font-size:14px!important;font-weight:500!important;line-height:1.5}.draft-rules-phase{margin:8px 0;padding:12px 14px;border-left:4px solid #64a9ff;border-radius:8px;background:#0d1423}.draft-rules-phase strong{display:block;color:#fff;font-size:15px;margin-bottom:3px}.draft-rules-phase span{display:block;color:#c4d0e6;font-size:13px;line-height:1.5}.draft-rules-phase:nth-of-type(3){border-left-color:#ff727c}.draft-rules-note{margin:12px 0 0!important;color:#a7b4d0!important;font-size:12px!important;line-height:1.5}@media(max-width:600px){.draft-rules-card{padding:14px;margin-bottom:18px}.draft-rules-phase{padding:10px}.draft-rules-phase strong{font-size:14px}.draft-rules-phase span{font-size:12px}}</style>
 
 </body>
+
+<style id="pick-pulse-return-to-slot-base">
+/* Pick: il fade torna al colore neutro originale del riquadro; evita overlay colorati concorrenti */
+#aPicks .slot.active-slot,#bPicks .slot.active-slot,#aPicks .slot.active-slot.pick-preview,#bPicks .slot.active-slot.pick-preview{
+ animation:none!important;background:#0d1423!important;box-shadow:none!important;border-color:#35415d!important;transition:none!important
+}
+#aPicks .slot.active-slot .pick-pulse-overlay,#bPicks .slot.active-slot .pick-pulse-overlay{display:none!important;animation:none!important;opacity:0!important}
+body.pick-side-blue #aPicks .slot.active-slot,body.pick-side-blue #bPicks .slot.active-slot,body.pick-side-blue #aPicks .slot.active-slot.pick-preview,body.pick-side-blue #bPicks .slot.active-slot.pick-preview{animation:pick-blue-return-base 1.55s ease-in-out infinite!important}
+body.pick-side-red #aPicks .slot.active-slot,body.pick-side-red #bPicks .slot.active-slot,body.pick-side-red #aPicks .slot.active-slot.pick-preview,body.pick-side-red #bPicks .slot.active-slot.pick-preview{animation:pick-red-return-base 1.55s ease-in-out infinite!important}
+@keyframes pick-blue-return-base{
+  0%,100%{background:#0d1423;border-color:#35415d;box-shadow:none}
+  50%{background:rgba(100,169,255,.075);border-color:rgba(100,169,255,.62);box-shadow:0 0 10px 1px rgba(100,169,255,.11)}
+}
+@keyframes pick-red-return-base{
+  0%,100%{background:#0d1423;border-color:#35415d;box-shadow:none}
+  50%{background:rgba(255,114,124,.075);border-color:rgba(255,114,124,.62);box-shadow:0 0 10px 1px rgba(255,114,124,.11)}
+}
+</style>
 </html>
 <style id="desktop-turn-pulse-unified">
 /* PC: un solo lampeggio dell’intero riquadro attivo, senza effetti sovrapposti */
